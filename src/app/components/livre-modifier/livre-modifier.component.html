@@ -1,0 +1,48 @@
+<div class="row justify-content-center mt-4">
+  <div class="col-md-6">
+    <div class="card shadow">
+      <div class="card-header bg-warning text-dark">
+        <h4 class="mb-0">Modifier le livre</h4>
+      </div>
+      <div class="card-body">
+        
+        <form (ngSubmit)="modifierLivre()">
+          
+          <div class="mb-3">
+            <label class="form-label">Titre du livre :</label>
+            <input type="text" class="form-control" name="titre" [(ngModel)]="livre.titre" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Auteur :</label>
+            <select class="form-select" name="auteur" [(ngModel)]="livre.auteur" required>
+              <option value="" disabled>Sélectionnez un auteur</option>
+              <option *ngFor="let auteur of auteurs" [value]="auteur._id">
+                {{ auteur.prenom }} {{ auteur.nom }}
+              </option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Résumé :</label>
+            <textarea class="form-control" name="resume" rows="3" [(ngModel)]="livre.resume"></textarea>
+          </div>
+
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="dispo" name="disponibilite" [(ngModel)]="livre.disponibilite">
+            <label class="form-check-label" for="dispo">Livre disponible</label>
+          </div>
+
+          <div class="d-flex gap-2 mb-3">
+            <button type="submit" class="btn btn-warning w-50">Mettre à jour</button>
+            <button type="button" class="btn btn-secondary w-50" routerLink="/livres">Annuler</button>
+          </div>
+          
+          <div *ngIf="messageSucces" class="alert alert-success text-center shadow-sm">
+            {{ messageSucces }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

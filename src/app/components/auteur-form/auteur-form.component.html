@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0">{{ isEditMode ? 'Modifier l\'auteur' : 'Ajouter un nouvel auteur' }}</h3>
+        </div>
+        
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" #auteurForm="ngForm">
+            
+            <div class="mb-3">
+              <label for="nom" class="form-label text-dark fw-bold">Nom complet *</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="nom" 
+                name="nom" 
+                [(ngModel)]="auteur.nom" 
+                required>
+            </div>
+
+            <div class="mb-3">
+              <label for="dateNaissance" class="form-label text-dark fw-bold">Date de naissance</label>
+              <input 
+                type="date" 
+                class="form-control" 
+                id="dateNaissance" 
+                name="dateNaissance" 
+                [(ngModel)]="auteur.dateNaissance">
+            </div>
+
+            <div class="mb-3">
+              <label for="biographie" class="form-label text-dark fw-bold">Biographie</label>
+              <textarea 
+                class="form-control" 
+                id="biographie" 
+                name="biographie" 
+                rows="4" 
+                [(ngModel)]="auteur.biographie"
+                placeholder="Quelques mots sur cet auteur..."></textarea>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+              <a routerLink="/auteurs" class="btn btn-secondary">Annuler</a>
+              <button 
+                type="submit" 
+                class="btn btn-success" 
+                [disabled]="!auteurForm.form.valid"> {{ isEditMode ? 'Enregistrer les modifications' : 'Ajouter l\'auteur' }}
+              </button>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
